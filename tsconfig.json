@@ -1,10 +1,9 @@
-{
+{                                                                     
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": [
-      "es2022"
-    ],
-    "module": "ES2022",
+    "target": "ES2021",
+    "module": "ES2020",
+    "esModuleInterop": true,
+    "declaration": true,
     "outDir": ".",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,

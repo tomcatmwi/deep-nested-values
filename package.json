@@ -2,8 +2,9 @@
   "name": "deep-nested-values",
   "version": "2.0.1",
   "description": "Extends the JS Object class to easily handle deep nested values",
-  "main": "dist/index.js",
+  "main": "index.js",
   "type": "module",
+  "module": "index.js",
   "keywords": [
     "deep-nested-values",
     "deepnestedvalues",
@@ -11,6 +12,10 @@
     "json",
     "data"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomcatmwi/deep-nested-values.git"
+  },  
   "author": "Tamas Polgar",
   "license": "ISC",
   "bugs": {
