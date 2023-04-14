@@ -15,7 +15,7 @@ exports.getDeepValue = (data, route) => {
 
 exports.setDeepValue = (data, route, value, createKey = true) => {
     if (!route)
-        return;
+        return false;
 
     let obj = data;
     const keys = route.split('.');
@@ -26,7 +26,7 @@ exports.setDeepValue = (data, route, value, createKey = true) => {
             if (createKey)
                 obj[key] = {};
             else
-                return;
+                return false;
             obj = obj[key];
     }
 
