@@ -1,0 +1,21 @@
+{
+  "name": "deep-nested-values",
+  "version": "1.0.0",
+  "description": "Extends the JS Object class to easily handle deep nested values",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "findvalue",
+    "finddeepvalue",
+    "json",
+    "data"
+  ],
+  "author": "Tamas Polgar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomcatmwi/deep-nested-values/issues"
+  },
+  "homepage": "https://github.com/tomcatmwi/deep-nested-values#readme"
+}
