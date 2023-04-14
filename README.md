@@ -1,5 +1,5 @@
 # deep-nested-values #
-A simple extension to the `Object` class to help find deeply nested values in JSON data structures.
+A simple tool to find deeply nested values in JSON data structures.
 
 ## Installation ##
 
@@ -9,26 +9,30 @@ npm i deep-nested-values
 
 ## How does it work? ##
 
-The regular JavaScript `Object` class now has 3 new methods to find, create, read and write deep nested values. Routes to the value can be specified as a period-separated string, such as: `nested.deepnested.cat`.
+There are two ways to use `deep-nested-values`: you can either import and call its methods, or extend default the `Object` class.
 
 # Methods
 
-## hasValue(route: string, createRoute: boolean = false)
+## hasDeepValue(data: object, route: string, createRoute: boolean = false)
 
 Returns a Boolean indicating whether the specified route exists within the object, and creates it if `createRoute` is `true`.
 
-## getValue(route: string)
+## getValue(data: object, route: string)
 
 Returns the value at the specified route, or `undefined` if not found.
 
-##  setValue(route: string, value: string | number, createRoute: boolean = true)
+##  setValue(data: object, route: string, value: string | number, createRoute: boolean = true)
 
 Sets the value at the route. By default, it creates the route if it doesn't exist. Returns a Boolean indicating success or failure.
+
+##  extendObject() ##
+
+Extends the JavaScript `Object` type with the above methods. Omit the `data` parameter when calling them. See examples below. Vue 3 doesn't seem to like this, so just use the regular methods instead.
 
 ## Examples ##
 
 ```
-require('deep-nested-values');
+import { getDeepValue, setDeepValue, hasDeepValue } from 'deep-nested-vales';
 
 const data = {
     something: 'nothing',
@@ -44,15 +48,48 @@ const data = {
 }
 
 
-data.hasKey('nested.deepnested.cat');
+hasDeepValue(data, 'nested.deepnested.cat');
 //  returns true
 
-data.getKey('nested.deepnested.cat');
+getDeepValue(data, 'nested.deepnested.cat');
 //  returns 'meow'
 
-data.setKey('nested.deepnested.cat', 'purr');
+setDeepValue(data, 'nested.deepnested.cat', 'purr');
 //  returns true
 
-data.getKey('nested.deepnested.cat');
+getDeepValue(data, 'nested.deepnested.cat');
+//  returns 'purr'
+```
+
+## Extending `Object` ##
+
+```
+import { extendObject } from 'deep-nested-vales';
+
+extendObject();
+
+const data = {
+    something: 'nothing',
+    value: 32,
+    nested: {
+        hello: 'world',
+        whatever: 'something',
+        deepnested: {
+            cat: 'meow',
+            someNumber: 1234
+        }
+    }
+}
+
+data.hasDeepValue('nested.deepnested.cat');
+//  returns true
+
+data.getDeepValue('nested.deepnested.cat');
+//  returns 'meow'
+
+data.setDeepValue('nested.deepnested.cat', 'purr');
+//  returns true
+
+data.getDeepValue('nested.deepnested.cat');
 //  returns 'purr'
 ```

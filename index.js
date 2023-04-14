@@ -1,10 +1,11 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 
-Object.prototype.getValue = function(route) {
+exports.getDeepValue = (data, route) => {
     if (!route)
-        return;
+    return;
 
-    let result = this;
+    let result = data;
     route
         .split('.')
         .forEach(node => result = result[node]);
@@ -12,42 +13,57 @@ Object.prototype.getValue = function(route) {
     return result;
 }
 
-Object.prototype.setValue = function(route, value, createKey = true) {
+exports.setDeepValue = (data, route, value, createKey = true) => {
+    if (!route)
+        return;
+
+    let obj = data;
+    const keys = route.split('.');
+    const lastKey = keys.pop();
+
+    for (const key of keys) {
+        if (!obj.hasOwnProperty(key))
+            if (createKey)
+                obj[key] = {};
+            else
+                return;
+            obj = obj[key];
+    }
+
+    obj[lastKey] = value;
+    data = obj;
+    return true;    
+}
+
+exports.hasDeepValue = (data, route, createKey = false) => {
     if (!route)
         return false;
 
-    let obj = this;
+    let obj = data;
     const keys = route.split('.');
-    const lastKey = keys.pop();
-    
+
     for (const key of keys) {
         if (!obj.hasOwnProperty(key))
             if (createKey)
                 obj[key] = {};
             else
                 return false;
-            obj = obj[key];
+        obj = obj[key];
     }
-    
-    obj[lastKey] = value;
+
     return true;
 }
 
-Object.prototype.hasValue = function(route, createKey = false) {
-    if (!route)
-        return false;
-
-    let obj = this;
-    const keys = route.split('.');
-  
-    for (const key of keys) {
-      if (!obj.hasOwnProperty(key))
-        if (createKey)
-          obj[key] = {};
-        else
-          return false;
-      obj = obj[key];
+exports.extendObject = () => {
+    Object.prototype.getDeepValue = function(route) {
+        return exports.getDeepValue(this, route);
     }
-  
-    return true;
+    
+    Object.prototype.setDeepValue = function(route, value, createKey = true) {
+        return exports.setDeepValue(this, route, value, createKey);
+    }
+    
+    Object.prototype.hasDeepValue = function(route, createKey = false) {
+        return exports.hasDeepValue(this, route, createKey);
+    }    
 }
