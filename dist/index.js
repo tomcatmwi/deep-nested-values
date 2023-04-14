@@ -1,4 +1,4 @@
-export const getDeepValue = (data, route) => {
+export function getDeepValue(data, route) {
     if (!route)
         return;
     let result = data;
@@ -6,8 +6,8 @@ export const getDeepValue = (data, route) => {
         .split('.')
         .forEach((node) => result = result[node]);
     return result;
-};
-export const setDeepValue = (data, route, value, createKey = true) => {
+}
+export function setDeepValue(data, route, value, createKey = true) {
     if (!route)
         return false;
     let obj = data;
@@ -24,8 +24,8 @@ export const setDeepValue = (data, route, value, createKey = true) => {
     obj[lastKey] = value;
     data = obj;
     return true;
-};
-export const hasDeepValue = (data, route, createKey = false) => {
+}
+export function hasDeepValue(data, route, createKey = false) {
     if (!route)
         return false;
     let obj = data;
@@ -39,5 +39,4 @@ export const hasDeepValue = (data, route, createKey = false) => {
         obj = obj[key];
     }
     return true;
-};
-//# sourceMappingURL=index.js.map
+}
