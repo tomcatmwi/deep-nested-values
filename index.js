@@ -2,9 +2,12 @@ export const getDeepValue = (data, route) => {
     if (!route)
         return;
     let result = data;
-    route
-        .split('.')
-        .forEach((node) => result = result[node]);
+    const keys = route.split('.');
+    for (const key of keys)
+        if (result.hasOwnProperty(key))
+            result = result[key];
+        else
+            return;
     return result;
 };
 export const setDeepValue = (data, route, value, createKey = true) => {
