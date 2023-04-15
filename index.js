@@ -1,5 +1,5 @@
 export const getDeepValue = (data, route) => {
-    if (!route)
+    if (!route || !data)
         return;
     let result = data;
     const keys = route.split('.');
