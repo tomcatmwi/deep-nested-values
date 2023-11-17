@@ -3,7 +3,7 @@
   "version": "2.0.6",
   "description": "Extends the JS Object class to easily handle deep nested values",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "module": "index.js",
   "keywords": [
     "deep-nested-values",
