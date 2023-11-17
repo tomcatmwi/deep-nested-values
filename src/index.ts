@@ -2,7 +2,7 @@ export const getDeepValue = (data: Record<string, unknown>, route: string) => {
     if (!route || !data)
         return;
 
-    let result: unknown = data;
+    let result: any = data;
     const keys: string[] = route.split('.');
 
     for (const key of keys)

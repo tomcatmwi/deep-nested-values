@@ -1,4 +1,7 @@
-export const getDeepValue = (data, route) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.hasDeepValue = exports.setDeepValue = exports.getDeepValue = void 0;
+const getDeepValue = (data, route) => {
     if (!route || !data)
         return;
     let result = data;
@@ -10,7 +13,8 @@ export const getDeepValue = (data, route) => {
             return;
     return result;
 };
-export const setDeepValue = (data, route, value, createKey = true) => {
+exports.getDeepValue = getDeepValue;
+const setDeepValue = (data, route, value, createKey = true) => {
     if (!route)
         return false;
     let obj = data;
@@ -28,7 +32,8 @@ export const setDeepValue = (data, route, value, createKey = true) => {
     data = obj;
     return true;
 };
-export const hasDeepValue = (data, route, createKey = false) => {
+exports.setDeepValue = setDeepValue;
+const hasDeepValue = (data, route, createKey = false) => {
     if (!route)
         return false;
     let obj = data;
@@ -43,4 +48,5 @@ export const hasDeepValue = (data, route, createKey = false) => {
     }
     return true;
 };
+exports.hasDeepValue = hasDeepValue;
 //# sourceMappingURL=index.js.map
