@@ -5,6 +5,8 @@ const getDeepValue = (data, route) => {
     if (!route || !data)
         return;
     let result = data;
+    if (!result)
+        return;
     const keys = route.split('.');
     for (const key of keys)
         if (result.hasOwnProperty(key))
