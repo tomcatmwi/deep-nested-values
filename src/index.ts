@@ -3,12 +3,12 @@ export const getDeepValue = (data: Record<string, unknown>, route: string) => {
         return;
 
     let result: any = data;
-    if (!result) return;
+    if (!result || !result?.hasOwnProperty) return;
     
     const keys: string[] = route.split('.');
 
     for (const key of keys)
-        if (result.hasOwnProperty(key))
+        if (!!key && result?.hasOwnProperty(key))
             result = result[key]
         else
             return;
